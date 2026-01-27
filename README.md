@@ -15,6 +15,28 @@ This is a personal project and part of my learning journey in mobile development
 
 __________
 
+
+Screenshots Exemples: 
+
+| Trip pick Menu |
+![Trip selection screen](screenshots/selecao-de-viagens.jpeg)
+
+
+| Expenses Hub |
+![Expenses hub screen](screenshots/hub-de-gastos.jpeg)
+
+
+| Fuel expense creation |
+
+![Fuel expense creation screen](screenshots/adicao-de-abastecimento.jpeg)
+
+
+| Travel Journey example |
+
+![Travel journal with favorites](screenshots/diario-com-favoritos.jpeg)
+
+
+
 ## Technologies used
 
 - React Native  
@@ -56,6 +78,7 @@ Author
 Developed by Diego Gama
 
 GitHub: @DiegoGamaDev
+
 
 
 
