@@ -16,24 +16,19 @@ This is a personal project and part of my learning journey in mobile development
 __________
 
 
-Screenshots Exemples: 
+## Screenshots Examples
 
-| Trip pick Menu |
-![Trip selection screen](screenshots/selecao-de-viagens.jpeg)
+### Trip Selection Menu
+<img src="screenshots/selecao-de-viagens.jpeg" width="280" />
 
+### Expenses Hub
+<img src="screenshots/hub-de-gastos.jpeg" width="280" />
 
-| Expenses Hub |
-![Expenses hub screen](screenshots/hub-de-gastos.jpeg)
+### Fuel Expense Creation
+<img src="screenshots/adicao-de-abastecimento.jpeg" width="280" />
 
-
-| Fuel expense creation |
-
-![Fuel expense creation screen](screenshots/adicao-de-abastecimento.jpeg)
-
-
-| Travel Journey example |
-
-![Travel journal with favorites](screenshots/diario-com-favoritos.jpeg)
+### Travel Journal (Favorites)
+<img src="screenshots/diario-com-favoritos.jpeg" width="280" />
 
 
 
