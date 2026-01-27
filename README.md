@@ -4,6 +4,9 @@ A mobile application to track expenses during trips.
 
 This project was created from a personal need to easily record travel expenses, even when there is no internet connection. The main goal is simplicity, organization, and continuous learning in mobile development.
 
+
+BRAZILIAN PORTUGUESE ONLY - 
+
 _________
 
 
