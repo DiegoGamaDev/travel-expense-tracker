@@ -51,5 +51,12 @@ Its functional and almost complete for a MVP. But it's in development yet.
 New features will be added soon.
 
 
+Author
+
+Developed by Diego Gama
+
+GitHub: @DiegoGamaDev
+
+
 
 
