@@ -15,6 +15,8 @@ import CreateManutencao from "./screens/createManutencao/createManutencao.jsx";
 import CreatePasseio from "./screens/createPasseio/createPasseio.jsx";
 import CreatePedagio from "./screens/createPedagio/createPedagio.jsx";
 import DisplayDiario from "./screens/displayDiario/displayDiario.jsx";
+import AtualizarRodagem from "./screens/AtualizarRodagem/atualizarRodagem.jsx";
+import Estatisticas from "./screens/displayEstatisticas/estatisticas.jsx";
 const Stack = createNativeStackNavigator();
 
 
@@ -82,8 +84,18 @@ function Routes(){
 
             <Stack.Screen name = "createPedagio" component={CreatePedagio} options={
                 {headerShown: false}
+                
             }/>
 
+              <Stack.Screen name = "atualizarRodagem" component={AtualizarRodagem} options={
+                {headerShown: false}
+                
+            }/>
+
+            <Stack.Screen name = "estatisticas" component={Estatisticas} options={
+                {headerShown: false}
+                
+            }/>
 
 
 

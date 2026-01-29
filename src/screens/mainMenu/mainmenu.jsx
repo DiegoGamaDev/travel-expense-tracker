@@ -34,13 +34,13 @@ function MainMenu(props) {
       if (viagemId) {
         loadViagem();
       }
-    }, [viagemId]) // A função só será chamada quando o `viagemId` mudar
+    }, [viagemId]) 
   );
 
   return (
     <View style={Style.container}>
       <ScrollView>
-        <Header title={"Nome: " + nomeViagem} />
+        <Header title={nomeViagem.toUpperCase()} />
         <MainMenuInfo
           valor={gastoParcialViagem ? gastoParcialViagem.toFixed(2) : '0.00'}
         />
@@ -100,12 +100,14 @@ function MainMenu(props) {
             <ComponentIcon
               source={Icon.icnEstatistica}
               label={'Estatisticas'}
+              onPress={() => viagemId && props.navigation.navigate('estatisticas', {viagemId})}
+
             />
 
             <ComponentIcon
               source={Icon.icnAtualizar}
               label={'Atualizar Rodagem'}
-              onPress={() => viagemId && props.navigation.navigate("createTrip", { viagemId })}
+              onPress={() => viagemId && props.navigation.navigate('atualizarRodagem', {kilometragemParcial : viagemSelecionada.kilometragemParcial, kilometragemInicial : viagemSelecionada.kilometragemInicial, viagemId })}
             />
 
             <ComponentIcon

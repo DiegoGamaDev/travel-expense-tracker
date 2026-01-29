@@ -5,6 +5,11 @@ import { TouchableOpacity } from "react-native";
 
 export function CardViagem(props){
 
+    const kmTexto =
+    props.kmPercorrido === "Não definido"
+    ? "Rodagem percorrida não definida"
+    : props.kmPercorrido + " km rodados";
+
     return (
         <TouchableOpacity onPress={()=> props.onPress()}  onLongPress = {()=> props.onLongPress()}>
 
@@ -26,7 +31,7 @@ export function CardViagem(props){
 
             <View style = {Style.linha}/>
             <Text style = {Style.TextInfos}>
-            {'Quilometragem percorrida: ' + props.kmPercorrido}
+            {kmTexto}
             </Text>
 
             <Text style = {Style.TextInfos}>

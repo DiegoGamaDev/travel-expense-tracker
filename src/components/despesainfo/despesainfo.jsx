@@ -2,8 +2,6 @@ import { View } from "react-native";
 import { Text } from "react-native";
 import Style from "./despesainfo.style";
 
-import { TESTES } from "../../constants/dropdownitems";
-
 
 function DespesaInfo(props){
 

@@ -20,6 +20,8 @@ export function CreateTrip() {
     const [localDePartida, setLocalDePartida] = useState('');
     const [destinoFinal, setDestinoFinal] = useState('');
     const [kilometragemInicial, setKilometragemInicial] = useState(0);
+    const [kilometragemParcial, setKilometragemParcial] = useState(0);
+    const [kilometragemOriginal, setKilometragemOriginal] = useState(0);
 
     useEffect(() => {
         async function fetchViagem() {
@@ -31,7 +33,9 @@ export function CreateTrip() {
                         setData(new Date(viagem.dataDeInicio));
                         setLocalDePartida(viagem.localDePartida);
                         setDestinoFinal(viagem.destinoFinal);
-                        setKilometragemInicial(viagem.kilometragemInicial);
+                        setKilometragemParcial(viagem.kilometragemParcial);
+                        setKilometragemInicial(viagem.kilometragemInicial ?? 0);
+                        setKilometragemOriginal(viagem.kilometragemInicial);
                     }
                 } catch (error) {
                     console.error("Erro ao carregar viagem:", error);
@@ -45,57 +49,105 @@ export function CreateTrip() {
     }, [viagemId]);
 
     const processarCriarOuEditarViagem = async () => {
-        if (!nome.trim() || !localDePartida.trim() || !kilometragemInicial) {
-            Alert.alert("Atenção", "Preencha os campos obrigatórios.");
-            return;
-        }
+    if (!nome.trim() || !localDePartida.trim() || !kilometragemInicial) {
+        Alert.alert("Atenção", "Preencha os campos obrigatórios.");
+        return;
+    }
 
-        const dados = {
-            nome,
-            localDePartida,
-            kilometragemInicial,
-        };
-
-        if (verificacaoViagem(dados)) {
-            try {
-                if (viagemId) {
-                    console.log('Entrou em Update');
-                    try {
-                        await updateTripDB({
-                            id: viagemId,
-                            nome,
-                            data: formatDateToSQL(data),
-                            local: localDePartida,
-                            destino: destinoFinal,
-                            kmInicial: kilometragemInicial,
-                        });
-                        Alert.alert("Sucesso", "Viagem atualizada com sucesso!");
-                    } catch (error) {
-                        console.error('Erro ao fazer update: ', error);
-                    }
-                } else {
-                    try {
-                        await createTripDB({
-                            nome,
-                            data: formatDateToSQL(data),
-                            local: localDePartida,
-                            destino: destinoFinal,
-                            kmInicial: kilometragemInicial,
-                        });
-                        Alert.alert("Sucesso", "Viagem criada com sucesso!");
-                    } catch (error) {
-                        console.error('Erro ao criar viagem: ', error);
-                    }
-                }
-                navigation.navigate('menuViagens');
-            } catch (error) {
-                console.error("Erro ao salvar viagem:", error);
-                Alert.alert("Erro", "Ocorreu um problema ao salvar a viagem.");
-            }
-        } else {
-            Alert.alert("Atenção", "Conferir as informações digitadas.");
-        }
+    const dados = {
+        nome,
+        localDePartida,
+        kilometragemInicial,
     };
+
+    if (verificacaoViagem(dados)) {
+        try {
+
+            
+            if (viagemId && kilometragemInicial != kilometragemOriginal) {
+
+                Alert.alert(
+                    "Atenção",
+                    "Você alterou a kilometragem inicial.\n\nIsso vai reiniciar a rodagem da viagem.\nDeseja continuar?",
+                    [
+                        {
+                            text: "Cancelar",
+                            style: "cancel",
+                            onPress: () => {
+                                return; 
+                            }
+                        },
+                        {
+                            text: "Continuar",
+                            onPress: async () => {
+                                try {
+                                    await updateTripDB({
+                                        id: viagemId,
+                                        nome,
+                                        data: formatDateToSQL(data),
+                                        local: localDePartida,
+                                        destino: destinoFinal,
+                                        kmInicial: kilometragemInicial,
+                                        kmParcial: 0, 
+                                    });
+
+                                    Alert.alert("Sucesso", "Viagem atualizada e rodagem reiniciada!");
+                                    navigation.navigate('menuViagens');
+                                } catch (error) {
+                                    console.error('Erro ao fazer update com reset: ', error);
+                                }
+                            }
+                        }
+                    ]
+                );
+
+                return; 
+            }
+
+            
+            if (viagemId) {
+                console.log('Entrou em Update');
+                try {
+                    await updateTripDB({
+                        id: viagemId,
+                        nome,
+                        data: formatDateToSQL(data),
+                        local: localDePartida,
+                        destino: destinoFinal,
+                        kmInicial: kilometragemInicial,
+                        kmParcial: kilometragemParcial,
+                    });
+                    Alert.alert("Sucesso", "Viagem atualizada com sucesso!");
+                } catch (error) {
+                    console.error('Erro ao fazer update: ', error);
+                }
+
+            
+            } else {
+                try {
+                    await createTripDB({
+                        nome,
+                        data: formatDateToSQL(data),
+                        local: localDePartida,
+                        destino: destinoFinal,
+                        kmInicial: kilometragemInicial,
+                    });
+                    Alert.alert("Sucesso", "Viagem criada com sucesso!");
+                } catch (error) {
+                    console.error('Erro ao criar viagem: ', error);
+                }
+            }
+
+            navigation.navigate('menuViagens');
+
+        } catch (error) {
+            console.error("Erro ao salvar viagem:", error);
+            Alert.alert("Erro", "Ocorreu um problema ao salvar a viagem.");
+        }
+    } else {
+        Alert.alert("Atenção", "Conferir as informações digitadas.");
+    }
+};
 
     return (
         <ScrollView automaticallyAdjustKeyboardInsets={true}>

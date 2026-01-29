@@ -5,11 +5,11 @@ import { formatDateReadSQL } from "../constants/dateformat";
 export class Despesa {
     #id;
     #data;
-    #valor
+    #valor;
     #local;
     #pagamento;
     #comentario;
-    #idViagem
+    #idViagem;
 
 
     constructor(data, valor, local, pagamento, comentario, idViagem){

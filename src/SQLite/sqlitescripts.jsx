@@ -923,8 +923,19 @@ export async function updatePedagioDB(props){
 export async function updateTripDB(props) {
             const db = await SQLite.openDatabaseAsync('controleoverland.db');
             await db.runAsync(
-                'UPDATE viagem SET nome = ?, dataDeInicio = ?, localDePartida = ?, destinoFinal = ?, kilometragemInicial = ? WHERE id = ?;',
-                [props.nome, props.data, props.local, props.destino, props.kmInicial, props.id] // Ordem correta
+                'UPDATE viagem SET nome = ?, dataDeInicio = ?, localDePartida = ?, destinoFinal = ?, kilometragemInicial = ?, kilometragemParcial =? WHERE id = ?;',
+                [props.nome, props.data, props.local, props.destino, props.kmInicial, props.kmParcial, props.id] 
             );
         }
+
+export async function updateRodagemDB(props){
+
+    const db = await SQLite.openDatabaseAsync('controleoverland.db');
+    await db.runAsync(
+            'UPDATE viagem SET kilometragemParcial = ? WHERE id = ?;',
+            [props.novaRodagem, props.viagemId]
+
+    )
+
+}
 
