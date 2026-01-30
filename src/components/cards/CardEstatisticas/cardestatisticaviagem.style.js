@@ -3,10 +3,11 @@ import { COLORS, FONTSIZE } from "../../../constants/theme";
 export const Style = {
 
     cardcontainer: {
-        width: '98%',
+        width: '96%',
         alignSelf:'center',
         padding: 12,
         marginTop: 14,
+        marginBottom:2,
         borderRadius: 16,
         elevation:4,
         shadowColor: 'black',
@@ -15,8 +16,7 @@ export const Style = {
         shadowRadius: 6,
         backgroundColor: 'white',
         borderWidth:1,
-        borderColor: COLORS.lightgrey,
-        marginBottom:18
+        borderColor: COLORS.lightgrey
 
     },
 

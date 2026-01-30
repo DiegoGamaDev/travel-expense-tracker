@@ -3,17 +3,41 @@ import { COLORS, FONTSIZE } from "../../constants/theme";
 export const styles = {
 
     container: {
-        flex: 1,
-        alignItems: "center",
-        
+        marginBottom:18,
         backgroundColor:COLORS.lightgrey,
         
+    },
+
+    containerMeio: {
+        padding: 2,
+        marginTop:4,
+        marginBottom:-4,
+        alignItems:'center',
+        backgroundColor:COLORS.lightgrey,
+        
+    },
+
+    containerTela: {
+        flex: 1,
+        
+        backgroundColor:COLORS.lightgrey,
+
     },
 
     Text: {
         color: COLORS.darkgrey,
         fontSize: FONTSIZE.extremeLarge,
          fontFamily: 'Anton-Regular'
+
+
+    },
+
+
+    TextMeio: {
+        color: COLORS.green,
+        fontSize: FONTSIZE.extremeLarge,
+         fontFamily: 'Anton-Regular',
+         alignItems: "center",
 
 
     },
